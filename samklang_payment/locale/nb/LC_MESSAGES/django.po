@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-13 22:28+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:10 models.py:11
+msgid "Optional"
+msgstr "Valgfri"
+
+#: models.py:18
+msgid "donation"
+msgstr "donasjon"
+
+#: models.py:18
+msgid "donations"
+msgstr "donasjoner"
+
+#: views.py:68
+msgid "Payment site authentication is not yet set up."
+msgstr "Autentisering til betalingsformidler er ennå ikke satt opp."
+
+#: views.py:76
+msgid "Transaction ID was empty"
+msgstr "Transaksjons-ID-en var tom"
+
+#: templates/samklang_payment/donation_form.html:5
+#: templates/samklang_payment/donation_form.html:9
+msgid "Support our work"
+msgstr "Støtt vårt arbeid"
+
+#: templates/samklang_payment/donation_form.html:16
+msgid "Send"
+msgstr "Send"
