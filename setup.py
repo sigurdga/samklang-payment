@@ -10,7 +10,7 @@ setup(
         description='Donations and payment app for Samklang',
         long_description=open('README.txt').read(),
         license="AGPL",
-        packages = ['samklang_payment', 'samklang_media.migrations'],
+        packages = ['samklang_payment', 'samklang_payment.migrations'],
         package_data = {'samklang_payment': ['templates/samklang_payment/*.html', 'locale/*/LC_MESSAGES/django.*o']},
         install_requires=['pytz>=2011n','pyRFC3339>=0.1'],
         classifiers=[
