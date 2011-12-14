@@ -96,7 +96,7 @@ class CreateDonationView(CreateView):
                 donation = Donation.objects.get(transaction=transaction_id)
                 donation.captured = execution_time
                 donation.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect(settings.DONATION_SUCCESS_URL)
             else:
                 return render_to_response('samklang_payment/error.html',
                         {'error': "%s: %s" % (response_code, handle_error(data))},

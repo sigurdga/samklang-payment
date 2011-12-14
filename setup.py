@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
         name='samklang-payment',
-        version="0.1.0",
+        version="0.1.1",
         author='Sigurd Gartmann',
         author_email='sigurdga-samklang@sigurdga.no',
         url='http://github.com/sigurdga/samklang-payment',
