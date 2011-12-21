@@ -1,0 +1,14 @@
+{% load i18n %}
+<div class="widget">
+    {% if header %}
+    <h1>{{ header }}</h1>
+    {% endif %}
+    <div id="contribute">
+        <a href="{% url payment-donation-create slug %}">{% trans "Donate by card" %}</a>
+    </div>
+    <p>{% blocktrans %}People have already donated {{ amount }} {{ currency }}{% endblocktrans %}</p>
+    {% if text %}
+    <p>{{ text|safe }}</p>
+    {% endif %}
+</div>
+
