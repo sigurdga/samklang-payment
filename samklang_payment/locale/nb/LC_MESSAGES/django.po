@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-14 11:55+0100\n"
+"POT-Creation-Date: 2011-12-22 12:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,70 +18,301 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: models.py:6
-msgid "transaction"
-msgstr "transaksjon"
-
-#: models.py:6
-msgid "transaction reference from nets"
-msgstr "transaksjonsreferanse fra NETS"
-
-#: models.py:7
-msgid "amount"
-msgstr "beløp"
-
-#: models.py:8
-msgid "created"
-msgstr "opprettet"
+#: models.py:8 models.py:23
+msgid "site"
+msgstr "nettsted"
 
 #: models.py:9
-msgid "captured"
-msgstr "godkjent"
+msgid "default currency"
+msgstr "standard myntenhet"
 
 #: models.py:10
+msgid "merchant id"
+msgstr "brukerstednummer"
+
+#: models.py:11
+msgid "test key"
+msgstr "nøkkel for test"
+
+#: models.py:12
+msgid "production key"
+msgstr "nøkkel for produksjon"
+
+#: models.py:23
+msgid "sites"
+msgstr "nettsteder"
+
+#: models.py:27
+msgid "payment site"
+msgstr "betalingsmottakernettsted"
+
+#: models.py:28 models.py:92
 msgid "name"
 msgstr "navn"
 
-#: models.py:10
+#: models.py:29
+msgid "slug"
+msgstr "URL-referanse"
+
+#: models.py:30
+msgid "description"
+msgstr "beskrivelse"
+
+#: models.py:31
+msgid "test mode"
+msgstr "testmodus"
+
+#: models.py:31
+msgid "Run this campaign in test mode, not transfering real money."
+msgstr "Kjør denne kampanjen i testmodus, uten å overføre ekte penger."
+
+#: models.py:32
+msgid "target amount"
+msgstr "målbeløp"
+
+#: models.py:33
+msgid "total donations"
+msgstr "sum donasjoner"
+
+#: models.py:33
+msgid ""
+"The total amount of donations to this campaign. Fill in this value OR "
+"\"other donations\"."
+msgstr ""
+"Totalsummen av alle donasjoner. Fyll inn dette ELLER «andre donasjoner»."
+
+#: models.py:34
+msgid "other donations"
+msgstr "andre donasjoner"
+
+#: models.py:34
+msgid ""
+"Donations made elsewhere to the system. If this is used, the total will be "
+"updated automatically."
+msgstr ""
+"Donasjoner lagret utenom kortsystemet. Totalen vil bli oppdatert automatisk."
+
+#: models.py:37
+msgid "thank you text"
+msgstr "takketekst"
+
+#: models.py:39 models.py:90
+msgid "created"
+msgstr "opprettet"
+
+#: models.py:40
+msgid "started"
+msgstr "startet"
+
+#: models.py:41
+msgid "updated"
+msgstr "oppdatert"
+
+#: models.py:52
+msgid "campaign"
+msgstr "kampanje"
+
+#: models.py:52
+msgid "campaigns"
+msgstr "kampanjer"
+
+#: models.py:88
+msgid "transaction"
+msgstr "transaksjon"
+
+#: models.py:88
+msgid "transaction reference from nets"
+msgstr "transaksjonsreferanse fra NETS"
+
+#: models.py:89
+msgid "amount"
+msgstr "beløp"
+
+#: models.py:91
+msgid "captured"
+msgstr "godkjent"
+
+#: models.py:92
 msgid ""
 "Optional. Put your name here if you want this to be linked to your name "
 "later."
-msgstr "Valgfritt. Legg igjen navnet ditt om du vil at donasjonen skal kunne kobles til deg."
+msgstr ""
+"Valgfritt. Legg igjen navnet ditt om du vil at donasjonen skal kunne kobles "
+"til deg."
 
-#: models.py:11
+#: models.py:93
 msgid "email"
 msgstr "e-post"
 
-#: models.py:11
+#: models.py:93
 msgid ""
 "Optional. In the future, we would like to send announcements to our "
 "contributors."
-msgstr "Valgfritt. Men om vi skal ha mulighet til å kontakte deg, bør du legge igjen en e-postadresse."
+msgstr ""
+"Valgfritt. Men om vi skal ha mulighet til å kontakte deg, bør du legge igjen "
+"en e-postadresse."
 
-#: models.py:18
+#: models.py:105
 msgid "donation"
 msgstr "donasjon"
 
-#: models.py:18
+#: models.py:105
 msgid "donations"
 msgstr "donasjoner"
 
-#: views.py:68
+#: views.py:37 views.py:82
 msgid "Payment site authentication is not yet set up."
 msgstr "Autentisering til betalingsformidler er ennå ikke satt opp."
 
-#: views.py:76
+#: views.py:96
 msgid "Transaction ID was empty"
 msgstr "Transaksjons-ID-en var tom"
 
+#: templates/samklang_payment/donation_box.html:7
+msgid "Donate by card"
+msgstr "Doner med kort"
+
+#: templates/samklang_payment/donation_box.html:9
+#, python-format
+msgid "People have already donated %(amount)s %(currency)s"
+msgstr "Folk har allerede donert %(amount)s %(currency)s"
+
+#: templates/samklang_payment/donation_detail.html:4
+msgid "Thank you"
+msgstr "Takk!"
+
+#: templates/samklang_payment/donation_detail.html:9
+#, python-format
+msgid ""
+"We just got confirmed that your donation of %(amount)s to our campaign "
+"\"%(campaign)s\" was verified and captured. The transaction reference was "
+"<strong>%(transaction)s</strong>."
+msgstr ""
+"Vi har akkurat fått godkjent transaksjonen pålydende %(amount)s til "
+"kampanjen «%(campaign)s». Transaksjonsreferansen var <strong>"
+"%(transaction)s</strong>."
+
 #: templates/samklang_payment/donation_form.html:5
 #: templates/samklang_payment/donation_form.html:9
-msgid "Support our work"
-msgstr "Støtt vårt arbeid"
+msgid "Support our case"
+msgstr "Støtt vår sak"
 
 #: templates/samklang_payment/donation_form.html:16
 msgid "Send"
 msgstr "Send"
 
-#~ msgid "Optional"
-#~ msgstr "Valgfri"
+#: templates/samklang_payment/donationcampaign_detail.html:13
+msgid "Running in test mode"
+msgstr "Kjører i testmodus"
+
+#: templates/samklang_payment/donationcampaign_detail.html:13
+msgid "YES"
+msgstr "JA"
+
+#: templates/samklang_payment/donationcampaign_detail.html:13
+msgid "NO"
+msgstr "NEI"
+
+#: templates/samklang_payment/donationcampaign_detail.html:14
+msgid "Started"
+msgstr "Startet"
+
+#: templates/samklang_payment/donationcampaign_detail.html:15
+msgid "Updated"
+msgstr "Oppdatert"
+
+#: templates/samklang_payment/donationcampaign_detail.html:16
+msgid "Total donations"
+msgstr "Sum alle donasjoner"
+
+#: templates/samklang_payment/donationcampaign_detail.html:17
+msgid "Other donations"
+msgstr "Andre donasjoner"
+
+#: templates/samklang_payment/donationcampaign_detail.html:18
+msgid "Card donations"
+msgstr "Kortdonasjoner"
+
+#: templates/samklang_payment/donationcampaign_detail.html:24
+msgid "Captured transactions"
+msgstr "Godkjente transaksjoner"
+
+#: templates/samklang_payment/donationcampaign_detail.html:29
+msgid "Time"
+msgstr "Tid"
+
+#: templates/samklang_payment/donationcampaign_detail.html:30
+msgid "Amount"
+msgstr "Beløp"
+
+#: templates/samklang_payment/donationcampaign_detail.html:31
+msgid "Name"
+msgstr "Navn"
+
+#: templates/samklang_payment/donationcampaign_detail.html:32
+msgid "Email"
+msgstr "E-post"
+
+#: templates/samklang_payment/donationcampaign_detail.html:37
+msgid "Total"
+msgstr "Totalt"
+
+#: templates/samklang_payment/donationcampaign_detail.html:59
+#: templates/samklang_payment/donationcampaign_form.html:15
+#: templates/samklang_payment/paymentsite_form.html:14
+msgid "Update"
+msgstr "Oppdater"
+
+#: templates/samklang_payment/donationcampaign_form.html:5
+#: templates/samklang_payment/donationcampaign_form.html:8
+#, python-format
+msgid "Update \"%(name)s\""
+msgstr "Oppdater «%(name)s»"
+
+#: templates/samklang_payment/donationcampaign_list.html:4
+#: templates/samklang_payment/donationcampaign_list.html:7
+msgid "Campaigns"
+msgstr "Kampanjer"
+
+#: templates/samklang_payment/donationcampaign_list.html:24
+#: templates/samklang_payment/paymentsite_detail.html:4
+#: templates/samklang_payment/paymentsite_detail.html:7
+msgid "Payment site configuration"
+msgstr "Betalingsinnstillinger for nettsted"
+
+#: templates/samklang_payment/donationcampaign_list.html:29
+msgid "Campaign administration"
+msgstr "Kampanjeadministrering"
+
+#: templates/samklang_payment/donationcampaign_list.html:30
+msgid ""
+"You may have more campaigns running at the same time. Click the headers to "
+"get the details and options to update."
+msgstr ""
+"Det er mulig å ha flere kampanjer kjørende på samme tid. Klikk overskriftene "
+"for å få opp mer detaljer og endringsmuligheter."
+
+#: templates/samklang_payment/paymentsite_detail.html:10
+msgid "Site"
+msgstr "Nettsted"
+
+#: templates/samklang_payment/paymentsite_detail.html:11
+msgid "Merchant id"
+msgstr "Brukerstednummer"
+
+#: templates/samklang_payment/paymentsite_detail.html:12
+msgid "Test key"
+msgstr "Nøkkel for test"
+
+#: templates/samklang_payment/paymentsite_detail.html:13
+msgid "Production key"
+msgstr "Nøkkel for produksjon"
+
+#: templates/samklang_payment/paymentsite_detail.html:20
+msgid "Edit"
+msgstr "Rediger"
+
+#: templates/samklang_payment/paymentsite_form.html:5
+#: templates/samklang_payment/paymentsite_form.html:8
+msgid "Update payment site configuration"
+msgstr "Oppdater betalingsinnstillinger for nettsted"
