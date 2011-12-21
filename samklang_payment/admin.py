@@ -1,5 +1,5 @@
 from django.contrib import admin
-from samklang_payment.models import Donation
+from samklang_payment.models import Donation, DonationCampaign, PaymentSite
 
 # will work when 1.4 is out
 #class CapturedStatusfilter(SimpleListFilter):
@@ -20,10 +20,11 @@ from samklang_payment.models import Donation
             #queryset.exclude(captured__isnull=False)
 
 class DonationAdmin(admin.ModelAdmin):
-    list_display = ('created', 'captured', 'amount')
-    list_filter = ('captured',)
+    list_display = ('campaign', 'created', 'captured', 'amount')
+    list_filter = ('campaign', 'captured',)
     #list_filter = (CapturedStatusfilter,)
 
 
 admin.site.register(Donation, DonationAdmin)
-
+admin.site.register(PaymentSite)
+admin.site.register(DonationCampaign)

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block main %}
+<h1>{{ object.name }}</h1>
+
+<p>{{ object.description }}</p>
+
+<p>{% trans "Running in test mode" %}: {% if object.test_mode %}{% trans "YES" %}{% else %}{% trans "NO" %}{% endif %}</p>
+<p>{% trans "Started" %}: {{ object.started }}</p>
+<p>{% trans "Updated" %}: {{ object.updated }}</p>
+<p>{% trans "Total donations" %}: {{ object.total_computed_donations }}</p>
+<p>{% trans "Other donations" %}: {{ object.other_computed_donations }}</p>
+<p>{% trans "Card donations" %}: {{ object.online_donations }}</p>
+
+<div id="contributionbar"><div id="contributionbarcontainer">
+        <div id="contributionbarvalue" style="width: {{ object.progress }}%;">
+</div></div></div>
+
+<h2>{% trans "Captured transactions" %}</h2>
+
+<table id="payment-table">
+    <thead>
+        <tr>
+            <th>{% trans "Time" %}</th>
+            <th>{% trans "Amount" %}</th>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Email" %}</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>{% trans "Total" %}</th>
+            <th class="right">{{ total.amount__sum }}</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </tfoot>
+    <tbody>
+        {% for object in object.donation_set.captured %}
+        <tr class="{% cycle "odd" "even" %}">
+            <td>{{ object.captured|date:"Y-m-d H:i" }}</td>
+            <td class="right">{{ object.amount|floatformat:2 }}</td>
+            <td>{{ object.name }}</td>
+            <td>{{ object.email }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
+{% block context_menu %}
+{% if request.user.is_authenticated %}
+<li><a href="{% url payment-campaign-update object.slug %}">{% trans "Update" %}</a></li>
+{% endif %}
+{% endblock %}

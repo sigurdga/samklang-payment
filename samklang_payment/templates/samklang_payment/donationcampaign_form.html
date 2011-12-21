@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block title %}{% blocktrans with object.name as name %}Update "{{ name }}"{% endblocktrans %}{% endblock %}
+
+{% block main %}
+<h1>{% blocktrans with object.name as name %}Update "{{ name }}"{% endblocktrans %}</h1>
+
+<form method="post" action="" class="uniForm">
+    {% csrf_token %}
+    <fieldset class="blockLabels">
+        {{ form|as_uni_form }}
+    </fieldset>
+    <button type="submit">{% trans "Update" %}</button>
+</form>
+
+{% endblock %}
+
+{% block footer_include %}
+{{ form.media }}
+{% endblock %}

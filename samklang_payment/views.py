@@ -4,18 +4,23 @@ from BeautifulSoup import BeautifulSoup
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from django.conf import settings
 from django.http import HttpResponseRedirect
-from django.views.generic import CreateView
-from samklang_payment.models import Donation
-from samklang_payment.forms import DonationForm
+from django.views.generic import CreateView, UpdateView, ListView, DetailView
+from samklang_payment.models import Donation, PaymentSite, DonationCampaign
+from samklang_payment.forms import DonationForm, PaymentSiteUpdateForm, DonationCampaignForm
 from pyrfc3339 import parse
 from django.utils.translation import ugettext as _
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 NETS_TEST_HOST = "epayment-test.bbs.no"
 NETS_PRODUCTION_HOST = "epayment.bbs.no"
 
-class CreateDonationView(CreateView):
+class DonationDetailView(DetailView):
+    model = Donation
+    slug_field = 'transaction'
+
+class DonationCreateView(CreateView):
     model = Donation
     form_class = DonationForm
 
@@ -23,18 +28,29 @@ class CreateDonationView(CreateView):
         """We get back form data, save the object, and initiates payment at Nets"""
 
         # save here to get id
-        donation = form.save()
-        redirect_url = "http://"+self.request.get_host()+reverse('payment-donate')
-        if settings.NETS_TEST_MODE:
+        donation = form.save(commit=False)
+        donation.campaign = DonationCampaign.objects.get(slug=self.kwargs.get('slug'), payment_site=self.request.site.paymentsite)
+        redirect_url = "http://"+self.request.get_host()+reverse('payment-donation-create', kwargs={'slug': donation.campaign.slug})
+        configuration = donation.campaign.payment_site
+        if not configuration:
+            return render_to_response('samklang_payment/error.html',
+                        {'error': _('Payment site authentication is not yet set up.')},
+                        context_instance=RequestContext(self.request))
+        donation.save()
+        if donation.campaign.test_mode:
             nets_host = NETS_TEST_HOST
+            token = configuration.test_key
         else:
             nets_host = NETS_PRODUCTION_HOST
-        url = "https://%(nets_host)s/Netaxept/Register.aspx?merchantId=%(merchant_id)d&token=%(token)s&orderNumber=%(order_number)d&amount=%(amount)d&currencyCode=NOK&redirecturl=%(redirect_url)s" % {
+            token = configuration.production_key
+
+        url = "https://%(nets_host)s/Netaxept/Register.aspx?merchantId=%(merchant_id)s&token=%(token)s&orderNumber=%(order_number)d&amount=%(amount)d&currencyCode=%(currency_code)s&redirecturl=%(redirect_url)s" % {
                 'nets_host': nets_host,
                 'amount': int(donation.amount*100),
-                'merchant_id': settings.NETS_MERCHANT_ID,
+                'merchant_id': configuration.merchant_id, #settings.NETS_MERCHANT_ID,
                 'order_number': donation.id,
-                'token': quote(settings.NETS_TOKEN),
+                'token': quote(token),
+                'currency_code': configuration.default_currency.upper(),
                 'redirect_url': redirect_url,
                 }
 
@@ -50,23 +66,27 @@ class CreateDonationView(CreateView):
         #if no error, redirect user to online payment terminal
         donation.transaction = transaction_id
         donation.save()
-        url = "https://%(nets_host)s/Terminal/default.aspx?merchantid=%(merchant_id)d&transactionid=%(transaction_id)s" % {
+        url = "https://%(nets_host)s/Terminal/default.aspx?merchantid=%(merchant_id)s&transactionid=%(transaction_id)s" % {
                 'nets_host': nets_host,
                 'transaction_id': transaction_id,
-                'merchant_id': settings.NETS_MERCHANT_ID,
+                'merchant_id': configuration.merchant_id,
                 }
         return HttpResponseRedirect(url)
 
 
     def get(self, request, *args, **kwargs):
-        if settings.NETS_TEST_MODE:
-            nets_host = NETS_TEST_HOST
-        else:
-            nets_host = NETS_PRODUCTION_HOST
-        if settings.NETS_TOKEN == 0:
+        campaign = DonationCampaign.objects.get(slug=self.kwargs.get('slug'), payment_site=self.request.site.paymentsite)
+        configuration = campaign.payment_site
+        if not configuration:
             return render_to_response('samklang_payment/error.html',
                         {'error': _('Payment site authentication is not yet set up.')},
-                        context_instance=RequestContext(request))
+                        context_instance=RequestContext(self.request))
+        if campaign.test_mode:
+            nets_host = NETS_TEST_HOST
+            token = configuration.test_key
+        else:
+            nets_host = NETS_PRODUCTION_HOST
+            token = configuration.production_key
 
         if 'transactionId' in request.GET:
             # Last step: run transaction and get status from nets
@@ -76,11 +96,11 @@ class CreateDonationView(CreateView):
                         {'error': _('Transaction ID was empty')},
                         context_instance=RequestContext(request))
 
-            url = "https://%(nets_host)s/Netaxept/Process.aspx?merchantId=%(merchant_id)d&token=%(token)s&transactionId=%(transaction_id)s&operation=SALE" % {
+            url = "https://%(nets_host)s/Netaxept/Process.aspx?merchantId=%(merchant_id)s&token=%(token)s&transactionId=%(transaction_id)s&operation=SALE" % {
                     'nets_host': nets_host,
                     'transaction_id': transaction_id,
-                    'merchant_id': settings.NETS_MERCHANT_ID,
-                    'token': quote(settings.NETS_TOKEN),
+                    'merchant_id': configuration.merchant_id,
+                    'token': quote(token),
                     }
             response = urlopen(url)
             data = response.read()
@@ -96,13 +116,13 @@ class CreateDonationView(CreateView):
                 donation = Donation.objects.get(transaction=transaction_id)
                 donation.captured = execution_time
                 donation.save()
-                return HttpResponseRedirect(settings.DONATION_SUCCESS_URL)
+                return HttpResponseRedirect(reverse('payment-donation-detail', kwargs={'campaign_slug': donation.campaign.slug, 'slug': transaction_id}))
             else:
                 return render_to_response('samklang_payment/error.html',
                         {'error': "%s: %s" % (response_code, handle_error(data))},
                         context_instance=RequestContext(request))
         else:
-            return super(CreateDonationView, self).get(request, *args, **kwargs)
+            return super(DonationCreateView, self).get(request, *args, **kwargs)
 
 
 def handle_error(text):
@@ -139,3 +159,47 @@ def get_execution_time(text):
         raise ValueError(error)
     else:
         return parse(execution_time.text)
+
+class PaymentSiteDetailView(DetailView):
+    model = PaymentSite
+
+    def get_object(self):
+        return self.request.site.paymentsite
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PaymentSiteDetailView, self).dispatch(*args, **kwargs)
+
+class PaymentSiteUpdateView(UpdateView):
+    model = PaymentSite
+    form_class = PaymentSiteUpdateForm
+
+    def get_object(self):
+        return self.request.site.paymentsite
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PaymentSiteUpdateView, self).dispatch(*args, **kwargs)
+
+class DonationCampaignListView(ListView):
+    model = DonationCampaign
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DonationCampaignListView, self).dispatch(*args, **kwargs)
+
+class DonationCampaignDetailView(DetailView):
+    model = DonationCampaign
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DonationCampaignDetailView, self).dispatch(*args, **kwargs)
+
+class DonationCampaignUpdateView(UpdateView):
+    model = DonationCampaign
+    form_class = DonationCampaignForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DonationCampaignUpdateView, self).dispatch(*args, **kwargs)
+

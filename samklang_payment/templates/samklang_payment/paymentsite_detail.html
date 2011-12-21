@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Payment configuration settings" %}{% endblock %}
+
+{% block main %}
+<h1>{% trans "Payment configuration settings" %}</h1>
+
+<table>
+    <tr><th>{% trans "Site" %}</th><td>{{ object.site }}</td></tr>
+    <tr><th>{% trans "Merchant id" %}</th><td>{{ object.merchant_id }}</td></tr>
+    <tr><th>{% trans "Test key" %}</th><td>{{ object.test_key }}</td></tr>
+    <tr><th>{% trans "Production key" %}</th><td>{{ object.production_key }}</td></tr>
+</table>
+
+{% endblock %}
+
+{% block context_menu %}
+{% if request.user.is_authenticated %}
+<li><a href="{% url payment-site-update %}">{% trans "Edit" %}</a></li>
+{% endif %}
+{% endblock %}

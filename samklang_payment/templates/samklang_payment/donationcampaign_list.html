@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Campaigns" %}{% endblock %}
+
+{% block main %}
+<h1>{% trans "Campaigns" %}</h1>
+
+{% for object in object_list %}
+<div class="campaign">
+    <nav class="object-menu"><ul><li><a href="">Edit</a></li></ul></nav>
+    <h2><a href="{% url payment-campaign-detail object.slug %}">{{ object.name }}</a></h2>
+    <p>{{ object.description|safe }}</p>
+
+    <div id="contributionbar"><div id="contributionbarcontainer">
+            <div id="contributionbarvalue" style="width: {{ object.progress }}%;">
+    </div></div></div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block context_menu %}
+{% if request.user.is_authenticated %}
+<li><a href="{% url payment-site-detail %}">{% trans "Payment site configuration" %}</a></li>
+{% endif %}
+{% endblock %}
+
+{% block context_info %}
+<h1>{% trans "Campaign administration" %}</h1>
+<p>{% trans "You may have more campaigns running at the same time. Click the headers to get the details and options to update." %}</p>
+{% endblock %}

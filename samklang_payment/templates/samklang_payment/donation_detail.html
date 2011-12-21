@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Thank you" %}{% endblock %}
+
+{% block main %}
+{{ object.campaign.thank_you_text_html|safe }}
+
+<p>{% blocktrans with object.amount as amount and object.campaign as campaign and object.transaction as transaction %}We just got confirmed that your donation of {{ amount }} to our campaign "{{ campaign }}" was verified and captured. The transaction reference was <strong>{{ transaction }}</strong>.{% endblocktrans %}</p>
+
+<h2>{{ object.campaign.name }}</h2>
+
+<p>{{ object.campaign.description }}</p>
+
+<div id="contributionbar"><div id="contributionbarcontainer">
+        <div id="contributionbarvalue" style="width: {{ object.campaign.progress }}%;">
+</div></div></div>
+
+{% endblock %}
