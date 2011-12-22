@@ -1,2 +1,3 @@
+v0.2.0, 2011-12-22 -- App now configurable in database. New administration pages and sample widgets.
 v0.1.1, 2011-12-14 -- Make donation form translatable, and add norwegian bokmål translation.
 v0.1.0, 2011-12-14 -- Initial release. Working with nets tests setup.
