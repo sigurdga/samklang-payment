@@ -8,6 +8,8 @@
 
 <p>{{ object.description }}</p>
 
+<p><a href="{% url payment-donation-create object.slug %}">{% url payment-donation-create object.slug %}</a></p>
+
 <p>{% trans "Running in test mode" %}: {% if object.test_mode %}{% trans "YES" %}{% else %}{% trans "NO" %}{% endif %}</p>
 <p>{% trans "Started" %}: {{ object.started }}</p>
 <p>{% trans "Updated" %}: {{ object.updated }}</p>
