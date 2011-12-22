@@ -19,7 +19,6 @@ class PaymentSite(models.Model):
         return ('payment-site-detail',)
 
     class Meta:
-        #db_table = 'samklang_payment_paymentsite'
         verbose_name, verbose_name_plural = _('site'), _('sites')
 
 
@@ -48,7 +47,6 @@ class DonationCampaign(models.Model):
         return ('payment-campaign-detail', [self.slug])
 
     class Meta:
-        db_table = "samklang_donationcampaign"
         verbose_name, verbose_name_plural = _('campaign'), _('campaigns')
 
     @property
@@ -84,7 +82,7 @@ class DonationManager(models.Manager):
 
 class Donation(models.Model):
     # nets' "order id" is model id
-    campaign = models.ForeignKey(DonationCampaign, verbose_name=('campaign'))
+    campaign = models.ForeignKey(DonationCampaign, verbose_name=('campaign'), null=True, blank=True)
     transaction = models.CharField(_('transaction'), max_length=32, blank=True, db_index=True, help_text=_('transaction reference from nets'))
     amount = models.DecimalField(_('amount'), max_digits=7, decimal_places=2)
     created = models.DateTimeField(_('created'), auto_now_add=True)
@@ -100,6 +98,5 @@ class Donation(models.Model):
         return u"%s %s" % (self.created.strftime("%Y-%m-%d %H:%M:%S"), self.amount)
 
     class Meta:
-        db_table = "samklang_donation"
         ordering = ("-created",)
         verbose_name, verbose_name_plural = _('donation'), _('donations')

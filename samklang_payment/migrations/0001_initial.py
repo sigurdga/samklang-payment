@@ -7,9 +7,9 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
+
         # Adding model 'Donation'
-        db.create_table('samklang_donation', (
+        db.create_table('samklang_payment_donation', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('transaction', self.gf('django.db.models.fields.CharField')(db_index=True, max_length=32, blank=True)),
             ('amount', self.gf('django.db.models.fields.DecimalField')(max_digits=7, decimal_places=2)),
@@ -22,14 +22,14 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
-        
+
         # Deleting model 'Donation'
-        db.delete_table('samklang_donation')
+        db.delete_table('samklang_payment_donation')
 
 
     models = {
         'samklang_payment.donation': {
-            'Meta': {'object_name': 'Donation', 'db_table': "'samklang_donation'"},
+            'Meta': {'object_name': 'Donation'},
             'amount': ('django.db.models.fields.DecimalField', [], {'max_digits': '7', 'decimal_places': '2'}),
             'captured': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),

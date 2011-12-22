@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding model 'DonationCampaign'
-        db.create_table('samklang_donationcampaign', (
+        db.create_table('samklang_payment_donationcampaign', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('payment_site', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['samklang_payment.PaymentSite'])),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=80)),
@@ -39,26 +39,26 @@ class Migration(SchemaMigration):
         db.send_create_signal('samklang_payment', ['PaymentSite'])
 
         # Adding field 'Donation.campaign'
-        db.add_column('samklang_donation', 'campaign', self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['samklang_payment.DonationCampaign']), keep_default=False)
+        db.add_column('samklang_payment_donation', 'campaign', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['samklang_payment.DonationCampaign'], null=True, blank=True), keep_default=False)
 
 
     def backwards(self, orm):
         
         # Deleting model 'DonationCampaign'
-        db.delete_table('samklang_donationcampaign')
+        db.delete_table('samklang_payment_donationcampaign')
 
         # Deleting model 'PaymentSite'
         db.delete_table('samklang_payment_paymentsite')
 
         # Deleting field 'Donation.campaign'
-        db.delete_column('samklang_donation', 'campaign_id')
+        db.delete_column('samklang_payment_donation', 'campaign_id')
 
 
     models = {
         'samklang_payment.donation': {
-            'Meta': {'ordering': "('-created',)", 'object_name': 'Donation', 'db_table': "'samklang_donation'"},
+            'Meta': {'ordering': "('-created',)", 'object_name': 'Donation'},
             'amount': ('django.db.models.fields.DecimalField', [], {'max_digits': '7', 'decimal_places': '2'}),
-            'campaign': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['samklang_payment.DonationCampaign']"}),
+            'campaign': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['samklang_payment.DonationCampaign']", 'null': 'True', 'blank': 'True'}),
             'captured': ('django.db.models.fields.DateTimeField', [], {'db_index': 'True', 'null': 'True', 'blank': 'True'}),
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
@@ -67,7 +67,7 @@ class Migration(SchemaMigration):
             'transaction': ('django.db.models.fields.CharField', [], {'db_index': 'True', 'max_length': '32', 'blank': 'True'})
         },
         'samklang_payment.donationcampaign': {
-            'Meta': {'object_name': 'DonationCampaign', 'db_table': "'samklang_donationcampaign'"},
+            'Meta': {'object_name': 'DonationCampaign'},
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.CharField', [], {'max_length': '250', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
