@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-22 12:01+0100\n"
+"POT-Creation-Date: 2011-12-30 21:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: models.py:8 models.py:23
+#: models.py:8 models.py:22
 msgid "site"
 msgstr "nettsted"
 
@@ -38,101 +38,101 @@ msgstr "nøkkel for test"
 msgid "production key"
 msgstr "nøkkel for produksjon"
 
-#: models.py:23
+#: models.py:22
 msgid "sites"
 msgstr "nettsteder"
 
-#: models.py:27
+#: models.py:26
 msgid "payment site"
 msgstr "betalingsmottakernettsted"
 
-#: models.py:28 models.py:92
+#: models.py:27 models.py:90
 msgid "name"
 msgstr "navn"
 
-#: models.py:29
+#: models.py:28
 msgid "slug"
 msgstr "URL-referanse"
 
-#: models.py:30
+#: models.py:29
 msgid "description"
 msgstr "beskrivelse"
 
-#: models.py:31
+#: models.py:30
 msgid "test mode"
 msgstr "testmodus"
 
-#: models.py:31
+#: models.py:30
 msgid "Run this campaign in test mode, not transfering real money."
 msgstr "Kjør denne kampanjen i testmodus, uten å overføre ekte penger."
 
-#: models.py:32
+#: models.py:31
 msgid "target amount"
 msgstr "målbeløp"
 
-#: models.py:33
+#: models.py:32
 msgid "total donations"
 msgstr "sum donasjoner"
 
-#: models.py:33
+#: models.py:32
 msgid ""
 "The total amount of donations to this campaign. Fill in this value OR "
 "\"other donations\"."
 msgstr ""
 "Totalsummen av alle donasjoner. Fyll inn dette ELLER «andre donasjoner»."
 
-#: models.py:34
+#: models.py:33
 msgid "other donations"
 msgstr "andre donasjoner"
 
-#: models.py:34
+#: models.py:33
 msgid ""
 "Donations made elsewhere to the system. If this is used, the total will be "
 "updated automatically."
 msgstr ""
 "Donasjoner lagret utenom kortsystemet. Totalen vil bli oppdatert automatisk."
 
-#: models.py:37
+#: models.py:36
 msgid "thank you text"
 msgstr "takketekst"
 
-#: models.py:39 models.py:90
+#: models.py:38 models.py:88
 msgid "created"
 msgstr "opprettet"
 
-#: models.py:40
+#: models.py:39
 msgid "started"
 msgstr "startet"
 
-#: models.py:41
+#: models.py:40
 msgid "updated"
 msgstr "oppdatert"
 
-#: models.py:52
+#: models.py:50
 msgid "campaign"
 msgstr "kampanje"
 
-#: models.py:52
+#: models.py:50
 msgid "campaigns"
 msgstr "kampanjer"
 
-#: models.py:88
+#: models.py:86
 msgid "transaction"
 msgstr "transaksjon"
 
-#: models.py:88
+#: models.py:86
 msgid "transaction reference from nets"
 msgstr "transaksjonsreferanse fra NETS"
 
-#: models.py:89
+#: models.py:87
 msgid "amount"
 msgstr "beløp"
 
-#: models.py:91
+#: models.py:89
 msgid "captured"
 msgstr "godkjent"
 
-#: models.py:92
+#: models.py:90
 msgid ""
 "Optional. Put your name here if you want this to be linked to your name "
 "later."
@@ -140,11 +140,11 @@ msgstr ""
 "Valgfritt. Legg igjen navnet ditt om du vil at donasjonen skal kunne kobles "
 "til deg."
 
-#: models.py:93
+#: models.py:91
 msgid "email"
 msgstr "e-post"
 
-#: models.py:93
+#: models.py:91
 msgid ""
 "Optional. In the future, we would like to send announcements to our "
 "contributors."
@@ -152,11 +152,11 @@ msgstr ""
 "Valgfritt. Men om vi skal ha mulighet til å kontakte deg, bør du legge igjen "
 "en e-postadresse."
 
-#: models.py:105
+#: models.py:102
 msgid "donation"
 msgstr "donasjon"
 
-#: models.py:105
+#: models.py:102
 msgid "donations"
 msgstr "donasjoner"
 
@@ -172,10 +172,10 @@ msgstr "Transaksjons-ID-en var tom"
 msgid "Donate by card"
 msgstr "Doner med kort"
 
-#: templates/samklang_payment/donation_box.html:9
+#: templates/samklang_payment/donation_box.html:12
 #, python-format
-msgid "People have already donated %(amount)s %(currency)s"
-msgstr "Folk har allerede donert %(amount)s %(currency)s"
+msgid "Donations so far: %(amount)s %(currency)s"
+msgstr "Samlet inn til nå: %(amount)s %(currency)s"
 
 #: templates/samklang_payment/donation_detail.html:4
 msgid "Thank you"
