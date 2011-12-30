@@ -6,9 +6,9 @@
     <div id="contribute">
         <a href="{% url payment-donation-create slug %}">{% trans "Donate by card" %}</a>
     </div>
-    <p>{% blocktrans %}People have already donated {{ amount }} {{ currency }}{% endblocktrans %}</p>
     {% if text %}
     <p>{{ text|safe }}</p>
     {% endif %}
+    <p>{% blocktrans %}Donations so far: {{ amount }} {{ currency }}{% endblocktrans %}</p>
 </div>
 
