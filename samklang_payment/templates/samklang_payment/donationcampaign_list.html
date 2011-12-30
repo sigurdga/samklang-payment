@@ -8,7 +8,7 @@
 
 {% for object in object_list %}
 <div class="campaign">
-    <nav class="object-menu"><ul><li><a href="">Edit</a></li></ul></nav>
+    <nav class="object-menu"><ul><li><a href="{% url payment-campaign-edit object.slug %}">{% trans "Update" %}</a></li></ul></nav>
     <h2><a href="{% url payment-campaign-detail object.slug %}">{{ object.name }}</a></h2>
     <p>{{ object.description|safe }}</p>
 

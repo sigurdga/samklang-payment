@@ -56,6 +56,6 @@
 
 {% block context_menu %}
 {% if request.user.is_authenticated %}
-<li><a href="{% url payment-campaign-update object.slug %}">{% trans "Update" %}</a></li>
+<li><a href="{% url payment-campaign-edit object.slug %}">{% trans "Update" %}</a></li>
 {% endif %}
 {% endblock %}
