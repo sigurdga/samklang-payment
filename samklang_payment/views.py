@@ -229,6 +229,17 @@ class DonationSuggestionUpdateView(UpdateView):
 class DonationSuggestionDeleteView(DeleteView):
     model = DonationSuggestion
 
+    def get_object(self):
+        suggestion = DonationSuggestion.objects.get(campaign__slug=self.kwargs.get('slug'), amount=self.kwargs.get('amount'))
+        return suggestion
+
+    def get(self, *args, **kwargs):
+        self.object = self.get_object()
+        campaign = self.object.campaign
+        self.object.delete()
+        return HttpResponseRedirect(campaign.get_absolute_url())
+
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(DonationSuggestionUpdateView, self).dispatch(*args, **kwargs)
+        return super(DonationSuggestionDeleteView, self).dispatch(*args, **kwargs)
