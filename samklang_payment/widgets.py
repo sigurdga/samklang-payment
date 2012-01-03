@@ -63,9 +63,9 @@ class Progress(Widget):
     def render(self, request):
         """Function that is really called"""
 
-        campaign_id = self.options.get("campaign")
-        if campaign_id:
-            campaign = DonationCampaign.objects.get(pk=campaign_id, payment_site=request.site)
+        campaign_slug = self.options.get("campaign")
+        if campaign_slug:
+            campaign = DonationCampaign.objects.get(slug=campaign_slug, payment_site=request.site)
 
             return render_to_string('samklang_payment/campaign_progress.html', {
             'progress': campaign.progress,
