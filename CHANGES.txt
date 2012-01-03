@@ -1,3 +1,4 @@
+v0.4.2, 2012-01-03 -- Allow for . in amount urls + include static files in package setup.
 v0.4.1, 2012-01-03 -- Fix suggestion delete view.
 v0.4.0, 2012-01-03 -- Donation suggestions support and new widgets.
 v0.3.0, 2011-12-22 -- Rename tables. DB-unsafe if app already in use! Only used on one site.
