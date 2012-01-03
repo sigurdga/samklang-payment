@@ -1,0 +1,4 @@
+div#donation-alternatives { width: 100%; position: relative; }
+div#donation-alternatives p { font-size: 1.2em; color: #fff; background-color: #de8b19; border-radius: 15px; float: left; width: 82px; margin: 10px 20px 10px 0; text-align: center; padding: 5px 0; }
+div#donation-alternatives p.active { background-color: #54534a; }
+div#donation-alternatives p:after { content: ",-" }

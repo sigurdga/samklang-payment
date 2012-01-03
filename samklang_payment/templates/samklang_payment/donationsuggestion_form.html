@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block title %}{% trans "Add donation suggestion" %}{% endblock %}
+
+{% block main %}
+<h1>{% trans "Add donation suggestion" %}</h1>
+
+<form action="" method="post" class="uniForm">
+    {% csrf_token %}
+    <fieldset class="blockLabels">
+        {{ form|as_uni_form }}
+    </fieldset>
+    <button type="submit">{% trans "Send" %}</button>
+</form>
+
+{% endblock %}

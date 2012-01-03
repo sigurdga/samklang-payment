@@ -5,9 +5,9 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.http import HttpResponseRedirect
-from django.views.generic import CreateView, UpdateView, ListView, DetailView
-from samklang_payment.models import Donation, PaymentSite, DonationCampaign
-from samklang_payment.forms import DonationForm, PaymentSiteUpdateForm, DonationCampaignForm
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
+from samklang_payment.models import Donation, PaymentSite, DonationCampaign, DonationSuggestion
+from samklang_payment.forms import DonationForm, PaymentSiteUpdateForm, DonationCampaignForm, DonationSuggestionForm
 from pyrfc3339 import parse
 from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
@@ -203,3 +203,32 @@ class DonationCampaignUpdateView(UpdateView):
     def dispatch(self, *args, **kwargs):
         return super(DonationCampaignUpdateView, self).dispatch(*args, **kwargs)
 
+class DonationSuggestionCreateView(CreateView):
+    model = DonationSuggestion
+    form_class = DonationSuggestionForm
+
+    def form_valid(self, form):
+        suggestion = form.save(commit=False)
+        campaign = DonationCampaign.objects.get(slug=self.kwargs['slug'])
+        suggestion.campaign = campaign
+        suggestion.save()
+        return HttpResponseRedirect(campaign.get_absolute_url())
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DonationSuggestionCreateView, self).dispatch(*args, **kwargs)
+
+class DonationSuggestionUpdateView(UpdateView):
+    model = DonationSuggestion
+    form_class = DonationSuggestionForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DonationSuggestionUpdateView, self).dispatch(*args, **kwargs)
+
+class DonationSuggestionDeleteView(DeleteView):
+    model = DonationSuggestion
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(DonationSuggestionUpdateView, self).dispatch(*args, **kwargs)

@@ -16,6 +16,14 @@
 <p>{% trans "Total donations" %}: {{ object.total_computed_donations }}</p>
 <p>{% trans "Other donations" %}: {{ object.other_computed_donations }}</p>
 <p>{% trans "Card donations" %}: {{ object.online_donations }}</p>
+<p>{% trans "Default donation suggestion" %}: {{ object.default_amount|default:"" }}</p>
+<div class="opposite"><a href="{% url payment-suggestion-new object.slug %}">{% trans "Legg til donasjonsforslag" %}</a></div>
+<p>{% trans "Donation suggestions" %}: {% for suggestion in object.donationsuggestion_set.all %}
+<span class="donationsuggestion">
+    {{ suggestion.amount|floatformat:2 }}
+    <a class="delete" href="{% url payment-suggestion-delete object.slug suggestion.amount %}">X</a>
+</span>
+{% endfor %}</p>
 
 <div id="contributionbar"><div id="contributionbarcontainer">
         <div id="contributionbarvalue" style="width: {{ object.progress }}%;">

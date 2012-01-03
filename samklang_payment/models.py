@@ -31,6 +31,7 @@ class DonationCampaign(models.Model):
     target_amount = models.DecimalField(_('target amount'), max_digits=9, decimal_places=2, blank=True, null=True)
     total_donations = models.DecimalField(_('total donations'), max_digits=9, decimal_places=2, help_text=_('The total amount of donations to this campaign. Fill in this value OR "other donations".'), blank=True, null=True)
     other_donations = models.DecimalField(_('other donations'), max_digits=9, decimal_places=2, help_text=_('Donations made elsewhere to the system. If this is used, the total will be updated automatically.'), blank=True, null=True)
+    default_amount = models.DecimalField(_('default amount'), max_digits=9, decimal_places=2, blank=True, null=True)
     # next line or special page with info about the transaction?
     #thank_you_page_url = models.CharField(_('thank you page url'), max_length=100, help_text=_("Redirect to this page to thank the users for their contributions"))
     thank_you_text = models.TextField(_('thank you text'), blank=True)
@@ -70,6 +71,23 @@ class DonationCampaign(models.Model):
     @property
     def progress(self):
         return "%.1f" % (self.total_computed_donations *100 / self.target_amount)
+
+
+class DonationSuggestion(models.Model):
+    """Suggestions for donations, will appear with the forms using DonationAmountInput"""
+
+    campaign = models.ForeignKey(DonationCampaign, verbose_name=_('campaign'))
+    amount = models.DecimalField(max_digits=9, decimal_places=2, verbose_name=_('amount'))
+
+    class Meta:
+        ordering = ('amount',)
+
+    def __unicode__(self):
+        return "%.2f" % self.amount
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('view_or_url_name' )
 
 
 class DonationManager(models.Manager):

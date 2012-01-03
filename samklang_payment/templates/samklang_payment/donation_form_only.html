@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load uni_form_tags %}
+<form action="{{ form_action }}" method="post" class="uniForm">
+    <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}' /></div>
+    <fieldset class="inlineLabels">
+        {{ form|as_uni_form }}
+    </fieldset>
+    <button type="submit">{% trans "Send" %}</button>
+</form>
+{{ form.media }}
