@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.models import Site
 from django.db.models import Sum
+from samklang_utils import markdown
 #from stdimage import StdImageField
 
 class PaymentSite(models.Model):
@@ -49,6 +50,10 @@ class DonationCampaign(models.Model):
 
     class Meta:
         verbose_name, verbose_name_plural = _('campaign'), _('campaigns')
+
+    def save(self, *args, **kwargs):
+        self.thank_you_text_html = markdown(self.thank_you_text.strip())
+        super(DonationCampaign, self).save(*args, **kwargs)
 
     @property
     def online_donations(self):
