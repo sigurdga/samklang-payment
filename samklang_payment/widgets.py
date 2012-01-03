@@ -72,3 +72,20 @@ class Progress(Widget):
             })
         else:
             return ""
+
+class Status(Widget):
+    """Show a progress bar of how we are doing against the target"""
+
+    def render(self, request):
+        """Function that is really called"""
+
+        campaign_slug = self.options.get("campaign")
+        if campaign_slug:
+            campaign = DonationCampaign.objects.get(slug=campaign_slug, payment_site=request.site)
+
+            return render_to_string('samklang_payment/campaign_status.html', {
+            'campaign': campaign,
+            })
+        else:
+            return ""
+

@@ -1,0 +1,3 @@
+{% load i18n %}
+
+{% blocktrans with campaign.updated as updated and campaign.total_computed_donations as amount and campaign.payment_site.default_currency as currency %}Last updated {{ updated }} – {{ amount }} {{ currency }}{% endblocktrans %}
