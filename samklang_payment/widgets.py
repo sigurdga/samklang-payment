@@ -3,6 +3,7 @@ from samklang_payment.models import DonationCampaign
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.template.context import RequestContext
+from django.utils.translation import ugettext as _
 
 class DonationBox(Widget):
     """Lists out total donations and how to contribute."""
@@ -46,13 +47,17 @@ class DonationForm(Widget):
             from samklang_payment.forms import DonationForm
             form = DonationForm(initial={'amount': default_amount, 'suggestions': suggestions})
 
-            csrf_token = request.COOKIES['csrftoken']
+            csrf_token = request.COOKIES.get('csrftoken', None)
 
-            return render_to_string('samklang_payment/donation_form_only.html', {
-                'form': form,
-                'form_action': reverse('payment-donation-create', args=[campaign_slug]),
-                'csrf_token': csrf_token,
-                }, context_instance=RequestContext(request))
+            if csrf_token:
+
+                return render_to_string('samklang_payment/donation_form_only.html', {
+                    'form': form,
+                    'form_action': reverse('payment-donation-create', args=[campaign_slug]),
+                    'csrf_token': csrf_token,
+                    }, context_instance=RequestContext(request))
+            else:
+                return "<p><strong><a href=\"%s\">%s</a></strong></p>" % (reverse('payment-donation-create', args=[campaign_slug]), _("Go to donation form"))
         else:
             return ""
 

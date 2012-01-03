@@ -1,3 +1,4 @@
+v0.4.4, 2012-01-04 -- If, for some reason, the csrftoken cookie is unavailable, show link to default payment form.
 v0.4.3, 2012-01-03 -- Very hot fix: no longer remove non-digits from suggestion javscript.
 v0.4.2, 2012-01-03 -- Allow for . in amount urls + include static files in package setup.
 v0.4.1, 2012-01-03 -- Fix suggestion delete view.
