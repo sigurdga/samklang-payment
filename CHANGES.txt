@@ -1,3 +1,4 @@
+v0.4.0, 2012-01-03 -- Donation suggestions support and new widgets.
 v0.3.0, 2011-12-22 -- Rename tables. DB-unsafe if app already in use! Only used on one site.
 v0.2.0, 2011-12-22 -- App now configurable in database. New administration pages and sample widgets.
 v0.1.1, 2011-12-14 -- Make donation form translatable, and add norwegian bokmål translation.
