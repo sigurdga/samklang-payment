@@ -44,20 +44,17 @@ class DonationForm(Widget):
                 suggestions = ""
                 default_amount = ""
 
+            from django.middleware.csrf import _get_new_csrf_key
             from samklang_payment.forms import DonationForm
             form = DonationForm(initial={'amount': default_amount, 'suggestions': suggestions})
 
-            csrf_token = request.COOKIES.get('csrftoken', None)
+            if not request.COOKIES.get('csrftoken', None):
+                request.META["CSRF_COOKIE"] = _get_new_csrf_key()
 
-            if csrf_token:
-
-                return render_to_string('samklang_payment/donation_form_only.html', {
-                    'form': form,
-                    'form_action': reverse('payment-donation-create', args=[campaign_slug]),
-                    'csrf_token': csrf_token,
-                    }, context_instance=RequestContext(request))
-            else:
-                return "<p><strong><a href=\"%s\">%s</a></strong></p>" % (reverse('payment-donation-create', args=[campaign_slug]), _("Go to donation form"))
+            return render_to_string('samklang_payment/donation_form_only.html', {
+                'form': form,
+                'form_action': reverse('payment-donation-create', args=[campaign_slug]),
+                }, context_instance=RequestContext(request))
         else:
             return ""
 
