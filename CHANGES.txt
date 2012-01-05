@@ -1,3 +1,4 @@
+v0.4.5, 2012-01-05 -- Fix form in widget cookie settings and remove trailing .00 from suggested donation amounts.
 v0.4.4, 2012-01-04 -- If, for some reason, the csrftoken cookie is unavailable, show link to default payment form.
 v0.4.3, 2012-01-03 -- Very hot fix: no longer remove non-digits from suggestion javscript.
 v0.4.2, 2012-01-03 -- Allow for . in amount urls + include static files in package setup.
