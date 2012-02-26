@@ -48,6 +48,9 @@ class DonationForm(Widget):
             from samklang_payment.forms import DonationForm
             form = DonationForm(initial={'amount': default_amount, 'suggestions': suggestions})
 
+            if not request.COOKIES:
+                return _("You or your browser does not let us set cookies. We need cookies to prevent cross site scripting attacks. Until you enable cookies, this notification will be displayed instead of the donation form.")
+
             if not request.COOKIES.get('csrftoken', None):
                 request.META["CSRF_COOKIE"] = _get_new_csrf_key()
 

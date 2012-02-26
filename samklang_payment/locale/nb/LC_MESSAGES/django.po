@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-03 09:31+0100\n"
+"POT-Creation-Date: 2012-02-26 21:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,125 +18,125 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: models.py:8 models.py:22
+#: models.py:9 models.py:23
 msgid "site"
 msgstr "nettsted"
 
-#: models.py:9
+#: models.py:10
 msgid "default currency"
 msgstr "standard myntenhet"
 
-#: models.py:10
+#: models.py:11
 msgid "merchant id"
 msgstr "brukerstednummer"
 
-#: models.py:11
+#: models.py:12
 msgid "test key"
 msgstr "nøkkel for test"
 
-#: models.py:12
+#: models.py:13
 msgid "production key"
 msgstr "nøkkel for produksjon"
 
-#: models.py:22
+#: models.py:23
 msgid "sites"
 msgstr "nettsteder"
 
-#: models.py:26
+#: models.py:27
 msgid "payment site"
 msgstr "betalingsmottakernettsted"
 
-#: models.py:27 models.py:108
+#: models.py:28 models.py:113
 msgid "name"
 msgstr "navn"
 
-#: models.py:28
+#: models.py:29
 msgid "slug"
 msgstr "URL-referanse"
 
-#: models.py:29
+#: models.py:30
 msgid "description"
 msgstr "beskrivelse"
 
-#: models.py:30
+#: models.py:31
 msgid "test mode"
 msgstr "testmodus"
 
-#: models.py:30
+#: models.py:31
 msgid "Run this campaign in test mode, not transfering real money."
 msgstr "Kjør denne kampanjen i testmodus, uten å overføre ekte penger."
 
-#: models.py:31
+#: models.py:32
 msgid "target amount"
 msgstr "målbeløp"
 
-#: models.py:32
+#: models.py:33
 msgid "total donations"
 msgstr "sum donasjoner"
 
-#: models.py:32
+#: models.py:33
 msgid ""
 "The total amount of donations to this campaign. Fill in this value OR "
 "\"other donations\"."
 msgstr ""
 "Totalsummen av alle donasjoner. Fyll inn dette ELLER «andre donasjoner»."
 
-#: models.py:33
+#: models.py:34
 msgid "other donations"
 msgstr "andre donasjoner"
 
-#: models.py:33
+#: models.py:34
 msgid ""
 "Donations made elsewhere to the system. If this is used, the total will be "
 "updated automatically."
 msgstr ""
 "Donasjoner lagret utenom kortsystemet. Totalen vil bli oppdatert automatisk."
 
-#: models.py:34
+#: models.py:35
 msgid "default amount"
 msgstr "forvalgt beløp"
 
-#: models.py:37
+#: models.py:38
 msgid "thank you text"
 msgstr "takketekst"
 
-#: models.py:39 models.py:106
+#: models.py:40 models.py:111
 msgid "created"
 msgstr "opprettet"
 
-#: models.py:40
+#: models.py:41
 msgid "started"
 msgstr "startet"
 
-#: models.py:41
+#: models.py:42
 msgid "updated"
 msgstr "oppdatert"
 
-#: models.py:51 models.py:79
+#: models.py:52 models.py:84
 msgid "campaign"
 msgstr "kampanje"
 
-#: models.py:51
+#: models.py:52
 msgid "campaigns"
 msgstr "kampanjer"
 
-#: models.py:80 models.py:105
+#: models.py:85 models.py:110
 msgid "amount"
 msgstr "beløp"
 
-#: models.py:104
+#: models.py:109
 msgid "transaction"
 msgstr "transaksjon"
 
-#: models.py:104
+#: models.py:109
 msgid "transaction reference from nets"
 msgstr "transaksjonsreferanse fra NETS"
 
-#: models.py:107
+#: models.py:112
 msgid "captured"
 msgstr "godkjent"
 
-#: models.py:108
+#: models.py:113
 msgid ""
 "Optional. Put your name here if you want this to be linked to your name "
 "later."
@@ -144,11 +144,11 @@ msgstr ""
 "Valgfritt. Legg igjen navnet ditt om du vil at donasjonen skal kunne kobles "
 "til deg."
 
-#: models.py:109
+#: models.py:114
 msgid "email"
 msgstr "e-post"
 
-#: models.py:109
+#: models.py:114
 msgid ""
 "Optional. In the future, we would like to send announcements to our "
 "contributors."
@@ -156,11 +156,11 @@ msgstr ""
 "Valgfritt. Men om vi skal ha mulighet til å kontakte deg, bør du legge igjen "
 "en e-postadresse."
 
-#: models.py:120
+#: models.py:125
 msgid "donation"
 msgstr "donasjon"
 
-#: models.py:120
+#: models.py:125
 msgid "donations"
 msgstr "donasjoner"
 
@@ -171,6 +171,17 @@ msgstr "Autentisering til betalingsformidler er ennå ikke satt opp."
 #: views.py:96
 msgid "Transaction ID was empty"
 msgstr "Transaksjons-ID-en var tom"
+
+#: widgets.py:52
+msgid ""
+"You or your browser does not let us set cookies. We need cookies to prevent "
+"cross site scripting attacks. Until you enable cookies, this notification "
+"will be displayed instead of the donation form."
+msgstr ""
+"Du eller nettleseren din lar oss ikke bruke informasjonskaplser (cookies). "
+"Vi trenger dette for å forhindre såkalte «cross site scripting»-angrep. Fram "
+"til du slår på informasjonskapsler for dette nettstedet vil vi vise denne "
+"meldingen i stedet for donasjonsskjemaet."
 
 #: templates/samklang_payment/campaign_status.html:3
 #, python-format
@@ -245,49 +256,47 @@ msgid "Card donations"
 msgstr "Kortdonasjoner"
 
 #: templates/samklang_payment/donationcampaign_detail.html:19
-msgid "Donation suggestions"
-msgstr "Donasjonsforslag"
-
-#: templates/samklang_payment/donationcampaign_detail.html:20
 msgid "Default donation suggestion"
 msgstr "Forvalgt donasjonsforslag"
 
-#: templates/samklang_payment/donationcampaign_detail.html:26
+#: templates/samklang_payment/donationcampaign_detail.html:20
+msgid "Legg til donasjonsforslag"
+msgstr ""
+
+#: templates/samklang_payment/donationcampaign_detail.html:21
+msgid "Donation suggestions"
+msgstr "Donasjonsforslag"
+
+#: templates/samklang_payment/donationcampaign_detail.html:32
 msgid "Captured transactions"
 msgstr "Godkjente transaksjoner"
 
-#: templates/samklang_payment/donationcampaign_detail.html:31
+#: templates/samklang_payment/donationcampaign_detail.html:37
 msgid "Time"
 msgstr "Tid"
 
-#: templates/samklang_payment/donationcampaign_detail.html:32
+#: templates/samklang_payment/donationcampaign_detail.html:38
 msgid "Amount"
 msgstr "Beløp"
 
-#: templates/samklang_payment/donationcampaign_detail.html:33
+#: templates/samklang_payment/donationcampaign_detail.html:39
 msgid "Name"
 msgstr "Navn"
 
-#: templates/samklang_payment/donationcampaign_detail.html:34
+#: templates/samklang_payment/donationcampaign_detail.html:40
 msgid "Email"
 msgstr "E-post"
 
-#: templates/samklang_payment/donationcampaign_detail.html:39
+#: templates/samklang_payment/donationcampaign_detail.html:45
 msgid "Total"
 msgstr "Totalt"
 
-#: templates/samklang_payment/donationcampaign_detail.html:61
+#: templates/samklang_payment/donationcampaign_detail.html:67
 #: templates/samklang_payment/donationcampaign_form.html:15
 #: templates/samklang_payment/donationcampaign_list.html:11
 #: templates/samklang_payment/paymentsite_form.html:14
 msgid "Update"
 msgstr "Oppdater"
-
-#: templates/samklang_payment/donationcampaign_detail.html:62
-#: templates/samklang_payment/donationsuggestion_form.html:5
-#: templates/samklang_payment/donationsuggestion_form.html:8
-msgid "Add donation suggestion"
-msgstr "Legg til donasjonsforslag"
 
 #: templates/samklang_payment/donationcampaign_form.html:5
 #: templates/samklang_payment/donationcampaign_form.html:8
@@ -317,6 +326,11 @@ msgid ""
 msgstr ""
 "Det er mulig å ha flere kampanjer kjørende på samme tid. Klikk overskriftene "
 "for å få opp mer detaljer og endringsmuligheter."
+
+#: templates/samklang_payment/donationsuggestion_form.html:5
+#: templates/samklang_payment/donationsuggestion_form.html:8
+msgid "Add donation suggestion"
+msgstr "Legg til donasjonsforslag"
 
 #: templates/samklang_payment/paymentsite_detail.html:10
 msgid "Site"
