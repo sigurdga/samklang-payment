@@ -1,5 +1,7 @@
 from samklang_menu.widgets import Widget
 from samklang_payment.models import DonationCampaign
+from samklang_payment.views import NETS_PRODUCTION_HOST
+
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.template.context import RequestContext
@@ -49,7 +51,7 @@ class DonationForm(Widget):
             form = DonationForm(initial={'amount': default_amount, 'suggestions': suggestions})
 
             if not request.COOKIES:
-                return _("You or your browser does not let us set cookies. We need cookies to prevent cross site scripting attacks. Until you enable cookies, this notification will be displayed instead of the donation form.")
+                return _('<div class="error-message">You or your browser blocks our cookies. We need to use cookies to prevent cross site scripting attacks. The form will appear when cookies are allowed for this domain (%(site_domain)s). You will also need to allow cookies for the payment site (%(payment_site_domain)s).</div>') % {'site_domain': request.site.domain, 'payment_site_domain': NETS_PRODUCTION_HOST}
 
             if not request.COOKIES.get('csrftoken', None):
                 request.META["CSRF_COOKIE"] = _get_new_csrf_key()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-26 21:35+0100\n"
+"POT-Creation-Date: 2012-03-11 11:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,16 +172,15 @@ msgstr "Autentisering til betalingsformidler er ennå ikke satt opp."
 msgid "Transaction ID was empty"
 msgstr "Transaksjons-ID-en var tom"
 
-#: widgets.py:52
+#: widgets.py:54
+#, python-format
 msgid ""
-"You or your browser does not let us set cookies. We need cookies to prevent "
-"cross site scripting attacks. Until you enable cookies, this notification "
-"will be displayed instead of the donation form."
+"<div class=\"error-message\">You or your browser blocks our cookies. We need "
+"to use cookies to prevent cross site scripting attacks. The form will appear "
+"when cookies are allowed for this domain (%(site_domain)s). You will also "
+"need to allow cookies for the payment site (%(payment_site_domain)s).</div>"
 msgstr ""
-"Du eller nettleseren din lar oss ikke bruke informasjonskaplser (cookies). "
-"Vi trenger dette for å forhindre såkalte «cross site scripting»-angrep. Fram "
-"til du slår på informasjonskapsler for dette nettstedet vil vi vise denne "
-"meldingen i stedet for donasjonsskjemaet."
+"<div class=\"error-message\">Du eller nettlesren din blokkerer våre informasjonskapsler (cookies). Vi må bruke informasjonskapsler for å forhindre såkalte «cross site scripting»-angrep. Betalingsskjemaet blir vist når informasjonskapsler for domenet (%(site_domain)s) er tillatt. Du må også tillate informasjonskaplser for betalingsnettstedet (%(payment_site_domain)s).</div>"
 
 #: templates/samklang_payment/campaign_status.html:3
 #, python-format
@@ -261,7 +260,7 @@ msgstr "Forvalgt donasjonsforslag"
 
 #: templates/samklang_payment/donationcampaign_detail.html:20
 msgid "Legg til donasjonsforslag"
-msgstr ""
+msgstr "Legg til donasjonsforslag"
 
 #: templates/samklang_payment/donationcampaign_detail.html:21
 msgid "Donation suggestions"
@@ -356,3 +355,13 @@ msgstr "Rediger"
 #: templates/samklang_payment/paymentsite_form.html:8
 msgid "Update payment site configuration"
 msgstr "Oppdater betalingsinnstillinger for nettsted"
+
+#~ msgid ""
+#~ "You or your browser does not let us set cookies. We need cookies to "
+#~ "prevent cross site scripting attacks. Until you enable cookies, this "
+#~ "notification will be displayed instead of the donation form."
+#~ msgstr ""
+#~ "Du eller nettleseren din lar oss ikke bruke informasjonskaplser "
+#~ "(cookies). Vi trenger dette for å forhindre såkalte «cross site "
+#~ "scripting»-angrep. Fram til du slår på informasjonskapsler for dette "
+#~ "nettstedet vil vi vise denne meldingen i stedet for donasjonsskjemaet."
