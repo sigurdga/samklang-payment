@@ -4,7 +4,7 @@
     <h1>{{ header }}</h1>
     {% endif %}
     <div id="contribute">
-        <a href="{% url payment-donation-create slug %}">{% trans "Donate by card" %}</a>
+        <a href="{% url 'payment-donation-create' slug %}">{% trans "Donate by card" %}</a>
     </div>
     {% if text %}
     <p>{{ text|safe }}</p>
