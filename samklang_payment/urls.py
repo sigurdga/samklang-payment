@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from samklang_payment.views import *
 
 urlpatterns = patterns('',
